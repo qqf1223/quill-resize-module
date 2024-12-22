@@ -1,9 +1,9 @@
 import BaseModule from './BaseModule'
 
-import IconAlignLeft from 'quill/assets/icons/float-left.svg'
-import IconAlignCenter from 'quill/assets/icons/float-center.svg'
-import IconAlignRight from 'quill/assets/icons/float-right.svg'
-import IconFloatFull from 'quill/assets/icons/float-full.svg'
+import IconAlignLeft from 'quill/assets/icons/float-left.svg?raw'
+import IconAlignCenter from 'quill/assets/icons/float-center.svg?raw'
+import IconAlignRight from 'quill/assets/icons/float-right.svg?raw'
+import IconFloatFull from 'quill/assets/icons/float-full.svg?raw'
 import IconPencil from '../assets/pencil.svg'
 
 import _Quill from 'quill'
@@ -87,7 +87,8 @@ export default class Toolbar extends BaseModule {
       const button = document.createElement('button')
       button.type = 'button'
       buttons.push(button)
-      button.innerHTML = ((tool.icon || '') + (tool.text || '')) || Icons[t]
+    //   button.innerHTML = ((tool.icon || '') + (tool.text || '')) || Icons[t]
+      button.innerHTML =  Icons[t]
       button.addEventListener('click', (evt) => {
         if (tool.handler && tool.handler.call(this, evt, button, this.activeEle) !== true) return
 

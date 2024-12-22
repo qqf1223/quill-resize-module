@@ -1,8 +1,8 @@
 import BaseModule from './BaseModule'
 
-import IconAlignLeft from 'quill/assets/icons/float-left.svg?raw'
-import IconAlignCenter from 'quill/assets/icons/float-center.svg?raw'
-import IconAlignRight from 'quill/assets/icons/float-right.svg?raw'
+import IconAlignLeft from "../assets/float-left.svg?raw";
+import IconAlignCenter from "../assets/float-center.svg?raw";
+import IconAlignRight from "../assets/float-right.svg?raw";
 import IconFloatFull from 'quill/assets/icons/float-full.svg?raw'
 import IconPencil from '../assets/pencil.svg?raw'
 

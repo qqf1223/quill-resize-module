@@ -21,14 +21,14 @@ const bannerPack = new webpack.BannerPlugin({
 
 const config = {
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    library: 'QuillResize',
-    libraryTarget: 'umd',
-    filename: '[name].js'
+    path: path.resolve(__dirname, "dist"),
+    library: "QuillResize",
+    libraryTarget: "umd",
+    filename: "[name].js",
   },
   devServer: {
     open: true,
-    host: 'localhost'
+    host: "localhost",
   },
   plugins: [
     bannerPack,
@@ -37,8 +37,8 @@ const config = {
     // }),
 
     new MiniCssExtractPlugin({
-      filename: 'resize.css'
-    })
+      filename: "resize.css",
+    }),
 
     // Add your plugins here
     // Learn more about plugins from https://webpack.js.org/configuration/plugins/
@@ -47,38 +47,38 @@ const config = {
     rules: [
       {
         test: /\.(js|jsx)$/i,
-        loader: 'babel-loader'
+        loader: "babel-loader",
       },
       {
         test: /\.css$/i,
-        use: [stylesHandler, 'css-loader']
+        use: [stylesHandler, "css-loader"],
       },
       {
         test: /\.s[ac]ss$/i,
-        use: [stylesHandler, 'css-loader', 'sass-loader']
+        use: [stylesHandler, "css-loader", "sass-loader"],
       },
       {
         test: /\.(eot|ttf|woff|woff2|png|jpg|gif)$/i,
-        type: 'asset'
+        type: "asset",
       },
       {
         test: /\.svg$/,
-        type: 'asset/source'
-      }
+        type: "asset/source",
+      },
 
       // Add your rules for custom modules here
       // Learn more about loaders from https://webpack.js.org/loaders/
-    ]
+    ],
   },
   optimization: {
     minimize: true,
     minimizer: [
       new TerserPlugin({
-        extractComments: false // 不将注释提取到单独的文件中
-      })
-    ]
-  }
-}
+        extractComments: false, // 不将注释提取到单独的文件中
+      }),
+    ],
+  },
+};
 
 module.exports = () => {
   if (isProduction) {

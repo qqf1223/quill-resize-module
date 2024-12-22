@@ -1,10 +1,10 @@
 import BaseModule from './BaseModule'
 
-import IconAlignLeft from "../assets/float-left.svg?raw";
-import IconAlignCenter from "../assets/float-center.svg?raw";
-import IconAlignRight from "../assets/float-right.svg?raw";
-import IconFloatFull from 'quill/assets/icons/float-full.svg?raw'
-import IconPencil from '../assets/pencil.svg?raw'
+import IconAlignLeft from 'quill/assets/icons/float-left.svg'
+import IconAlignCenter from 'quill/assets/icons/float-center.svg'
+import IconAlignRight from 'quill/assets/icons/float-right.svg'
+import IconFloatFull from 'quill/assets/icons/float-full.svg'
+import IconPencil from '../assets/pencil.svg'
 
 import _Quill from 'quill'
 const Quill = window.Quill || _Quill

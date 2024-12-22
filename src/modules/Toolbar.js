@@ -23,7 +23,7 @@ export default class Toolbar extends BaseModule {
     center: IconAlignCenter,
     right: IconAlignRight,
     full: IconFloatFull,
-    edit: IconPencil
+    // edit: IconPencil
   }
 
   static Tools = {
@@ -44,6 +44,7 @@ export default class Toolbar extends BaseModule {
       }
     },
     right: {
+        icon:'',
       apply (activeEle) {
         ImageFormatClass.add(activeEle, 'right')
       },
@@ -87,8 +88,6 @@ export default class Toolbar extends BaseModule {
       const button = document.createElement('button')
       button.type = 'button'
       buttons.push(button)
-      console.log(tool, Icons[t]);
-    //   button.innerHTML = "<img src='"+btoa(unescape(encodeURIComponent(Icons[t])))+"'/>"
       button.innerHTML = (tool.icon || "") + (tool.text || "") || Icons[t];
       button.addEventListener('click', (evt) => {
         if (tool.handler && tool.handler.call(this, evt, button, this.activeEle) !== true) return

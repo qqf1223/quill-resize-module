@@ -64,7 +64,6 @@ const config = {
       {
         test: /\.svg$/,
         type: "asset/source",
-        use: ["raw-loader"],
       },
 
       // Add your rules for custom modules here

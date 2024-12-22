@@ -23,95 +23,100 @@ export default class Toolbar extends BaseModule {
     center: IconAlignCenter,
     right: IconAlignRight,
     full: IconFloatFull,
-    // edit: IconPencil
-  }
+    edit: IconPencil,
+  };
 
   static Tools = {
     left: {
-      apply (activeEle) {
-        ImageFormatClass.add(activeEle, 'left')
+      apply(activeEle) {
+        ImageFormatClass.add(activeEle, "left");
       },
-      isApplied (activeEle) {
-        return ImageFormatClass.value(activeEle) === 'left'
-      }
+      isApplied(activeEle) {
+        return ImageFormatClass.value(activeEle) === "left";
+      },
     },
     center: {
-      apply (activeEle) {
-        ImageFormatClass.add(activeEle, 'center')
+      apply(activeEle) {
+        ImageFormatClass.add(activeEle, "center");
       },
-      isApplied (activeEle) {
-        return ImageFormatClass.value(activeEle) === 'center'
-      }
+      isApplied(activeEle) {
+        return ImageFormatClass.value(activeEle) === "center";
+      },
     },
     right: {
-        icon:'',
-      apply (activeEle) {
-        ImageFormatClass.add(activeEle, 'right')
+      icon: "https://www.svgrepo.com/show/377324/file-minus.svg",
+      apply(activeEle) {
+        ImageFormatClass.add(activeEle, "right");
       },
-      isApplied (activeEle) {
-        return ImageFormatClass.value(activeEle) === 'right'
-      }
+      isApplied(activeEle) {
+        return ImageFormatClass.value(activeEle) === "right";
+      },
     },
     full: {
-      apply (activeEle) {
-        ImageFormatClass.add(activeEle, 'full')
+      apply(activeEle) {
+        ImageFormatClass.add(activeEle, "full");
       },
-      isApplied (activeEle) {
-        return ImageFormatClass.value(activeEle) === 'full'
-      }
+      isApplied(activeEle) {
+        return ImageFormatClass.value(activeEle) === "full";
+      },
     },
     edit: {
-      handler (evt, button, activeEle) {
-        this.quill.emitter.emit('resize-edit', activeEle, this.blot)
-      }
-    }
-  }
+      handler(evt, button, activeEle) {
+        this.quill.emitter.emit("resize-edit", activeEle, this.blot);
+      },
+    },
+  };
 
-  onCreate () {
+  onCreate() {
     // Setup Toolbar
-    this.toolbar = document.createElement('div')
-    this.toolbar.className = 'ql-resize-toolbar'
-    this.overlay.appendChild(this.toolbar)
+    this.toolbar = document.createElement("div");
+    this.toolbar.className = "ql-resize-toolbar";
+    this.overlay.appendChild(this.toolbar);
 
     // Setup Buttons
-    this._addToolbarButtons()
+    this._addToolbarButtons();
   }
 
-  _addToolbarButtons () {
-    const Icons = this.constructor.Icons
-    const Tools = this.constructor.Tools
-    const buttons = []
+  _addToolbarButtons() {
+    const Icons = this.constructor.Icons;
+    const Tools = this.constructor.Tools;
+    const buttons = [];
     this.options.tools.forEach((t) => {
-      const tool = Tools[t] || t
-      if (tool.verify && tool.verify.call(this, this.activeEle) === false) return
+      const tool = Tools[t] || t;
+      if (tool.verify && tool.verify.call(this, this.activeEle) === false)
+        return;
 
-      const button = document.createElement('button')
-      button.type = 'button'
-      buttons.push(button)
+      const button = document.createElement("button");
+      button.type = "button";
+      buttons.push(button);
       button.innerHTML = (tool.icon || "") + (tool.text || "") || Icons[t];
-      button.addEventListener('click', (evt) => {
-        if (tool.handler && tool.handler.call(this, evt, button, this.activeEle) !== true) return
+      button.addEventListener("click", (evt) => {
+        if (
+          tool.handler &&
+          tool.handler.call(this, evt, button, this.activeEle) !== true
+        )
+          return;
 
         // deselect all buttons
-        buttons.forEach(button => (button.classList.remove('active')))
+        buttons.forEach((button) => button.classList.remove("active"));
         if (tool.isApplied && tool.isApplied.call(this, this.activeEle)) {
           // If applied, unapply
-          ImageFormatClass.remove(this.activeEle)
+          ImageFormatClass.remove(this.activeEle);
         } else {
           // otherwise, select button and apply
-          button.classList.add('active')
-          tool.apply && tool.apply.call(this, this.activeEle)
+          button.classList.add("active");
+          tool.apply && tool.apply.call(this, this.activeEle);
         }
 
         // image may change position; redraw drag handles
-        this.requestUpdate()
-      })
+        this.requestUpdate();
+      });
 
       if (tool.isApplied && tool.isApplied.call(this, this.activeEle)) {
         // select button if previously applied
-        button.classList.add('active')
+        button.classList.add("active");
       }
-      this.toolbar.appendChild(button)
-    })
+      this.toolbar.appendChild(button);
+    });
   }
 }

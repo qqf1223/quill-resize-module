@@ -88,7 +88,8 @@ export default class Toolbar extends BaseModule {
       button.type = 'button'
       buttons.push(button)
       console.log(tool, Icons[t]);
-      button.innerHTML = ((tool.icon || '') + (tool.text || '')) || "<img src='"+btoa(unescape(encodeURIComponent(Icons[t])))+"'/>"
+      button.innerHTML = "<img src='"+btoa(unescape(encodeURIComponent(Icons[t])))+"'/>"
+    //   button.innerHTML = (tool.icon || "") + (tool.text || "") || Icons[t];
       button.addEventListener('click', (evt) => {
         if (tool.handler && tool.handler.call(this, evt, button, this.activeEle) !== true) return
 
